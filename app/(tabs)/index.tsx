@@ -5,6 +5,8 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
+import MapView, { Marker } from 'react-native-maps';
+
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
@@ -16,8 +18,24 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Hi! Welcome!</ThemedText>
+        <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
+      </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <MapView
+          // style={{width: 600, height: 300}}
+          initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+          }}
+          style={styles.map}
+        >
+          <Marker
+            coordinate={{latitude: 37.78825, longitude:  -122.4324}}
+          />
+        </MapView>  
       </ThemedView>
       <ThemedView>
 
@@ -61,6 +79,7 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   stepContainer: {
+    // flexDirection: 'row',
     gap: 8,
     marginBottom: 8,
   },
@@ -71,5 +90,9 @@ const styles = StyleSheet.create({
     left: 0,
     position: 'absolute',
     opacity: 50
+  },
+   map: {
+    width: '100%',
+     height: 500,
   },
 });
